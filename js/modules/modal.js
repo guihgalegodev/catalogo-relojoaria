@@ -254,30 +254,30 @@ export default class Modal {
     this.btnsDados = [...this.btnsDetalhes].map((btn) => {
       return {
         btn,
-        gameKey: btn.dataset.game,
+        productKey: btn.dataset.product,
       };
     });
-    this.getGame(e);
+    this.getProduct(e);
   }
 
   async initFetch(objBtn) {
     try {
       objBtn.btn.style.opacity = "0.5";
       objBtn.btn.style.pointerEvents = "none";
-      const response = await fetch("./games.json");
+      const response = await fetch("./products.json");
       if (!response.ok) {
         throw new Error("Não foi possível carregar os dados dos jogos.");
       }
 
-      const games = await response.json();
+      const products = await response.json();
 
-      const listaImagens = games[objBtn.gameKey];
+      const listaImagens = products[objBtn.productKey];
 
       if (listaImagens) {
         this.abrirModal(listaImagens);
       } else {
         throw new Error(
-          `Jogo com a chave "${objBtn.gameKey}" não foi encontrado no arquivo de dados.`,
+          `Jogo com a chave "${objBtn.productKey}" não foi encontrado no arquivo de dados.`,
         );
       }
     } catch (error) {
@@ -289,10 +289,10 @@ export default class Modal {
     }
   }
 
-  getGame(e) {
-    const btnTargetDataGame = e.currentTarget.dataset.game;
+  getProduct(e) {
+    const btnTargetDataProduct = e.currentTarget.dataset.product;
     this.btnsDados.forEach((objBtn) => {
-      if (objBtn.gameKey === btnTargetDataGame) {
+      if (objBtn.productKey === btnTargetDataProduct) {
         this.initFetch(objBtn);
       }
     });
