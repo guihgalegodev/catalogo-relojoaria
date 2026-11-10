@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relojoaria Amiga Presentes</title>
+  <link rel="stylesheet" href="./css/style.min.css">
+  <link rel="icon" href="./assets/img/logo-favicon.png" sizes="32x32" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <header class="header-bg">
+    <div class="header container">
+      <div class="logo">
+        <img src="./assets/img/logo-header-1.png" alt="" width="60px" height="60px">
+      </div>
+      <nav id="nav-menu">
+        <button aria-label="Abrir menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false">Menu
+          <span id="hamburguer"></span>
+        </button>
+        <ul id="menu" role="menu">
+          <li><a href="index.html">Home</a></li>
+          <li data-dropdown>
+            <a href="#perfumes">Perfumes</a>
+            <ul class="dropdown-menu">
+              <hr>
+              <li><a href="perfumes-masc.html">Masculinos</a></li>
+              <li><a href="perfumes-fem.html">Femininos</a></li>
+              <li><a href="perfumes-uni.html">Unissex</a></li>
+              <li><a href="kit-decants.html">Kits Decants</a></li>
+              <hr>
+            </ul>
+          </li>
+          <li data-dropdown>
+            <a href="#relogios">Relogios</a>
+            <ul class="dropdown-menu">
+              <hr>
+              <li><a href="perfumes-masc.html">Masculinos</a></li>
+              <li><a href="perfumes-fem.html">Femininos</a></li>
+              <li><a href="perfumes-uni.html">Unissex</a></li>
+              <hr>
+            </ul>
+          </li>
+          <li data-dropdown>
+            <a href="#prata">Prata 925 / Folheados</a>
+            <ul class="dropdown-menu">
+              <hr>
+              <li><a href="perfumes-masc.html">Masculinos</a></li>
+              <li><a href="perfumes-fem.html">Femininos</a></li>
+              <li><a href="perfumes-uni.html">Unissex</a></li>
+              <hr>
+            </ul>
+          </li>
+          <li data-dropdown>
+            <a href="#oculos">Óculos</a>
+            <ul class="dropdown-menu">
+              <hr>
+              <li><a href="oculos-masc.html">Masculinos</a></li>
+              <li><a href="perfumes-fem.html">Femininos</a></li>
+              <li><a href="perfumes-uni.html">Unissex</a></li>
+              <hr>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrapper">
+    <div class="content-fetch">
+      <main class="container">
+        <div class="intro" data-anima="right">
+          <h2 class="sub-title">Kit's Decants</h2>
+        </div>
+
+        <div class="jogos">
+          <div class=" jogo" data-anima="down">
+            <h3 class="game-name">God of War Ragnarok <span class="condicao">(Usado)</span></h3>
+            <div class="jogo-img">
+              <img src="./assets/img/ps5/gow-rag-foto-thumb.jpg" alt="God of War Ragnarok Capa" class="details-img">
+              <div class="overlay">
+                <span class="estados">Estado: Excelente</span>
+                <span class="cib-loose">CIB</span>
+              </div>
+            </div>
+            <div class="prices">
+              <span class="price-pix">
+                <img src="./assets/icons/pix.svg" alt="">R$ 150
+              </span>
+              <span>ou</span>
+              <span>R$ 50 (3x sem juros)</span>
+            </div>
+            <div class="botoes">
+              <button class="details" data-game="game1-ps5"> <img src="./assets/icons/lupa-2.svg" alt="Loupe Icon"> Detalhes</button>
+              <a href="https://loja.infinitepay.io/guilherme-galego/ems5818-naruto-shippuden-ultimate-ninja-storm-2---" target="_blank" class="cp"> <img src="./assets/icons/cart.svg" alt="Shoppe Icon"> Adicionar</a>
+            </div>
+          </div>
+
+          <div class=" jogo" data-anima="down">
+            <h3 class="game-name">Horizon Forbidden West <span class="condicao">(Usado)</span></h3>
+            <div class="jogo-img">
+              <img src="./assets/img/ps5/horizon-foto-thumb.jpg" alt="Horizon Forbidden West Capa" class="details-img">
+              <div class="overlay">
+                <span class="estados">Estado: Excelente</span>
+                <span class="cib-loose">CIB</span>
+              </div>
+            </div>
+            <div class="prices">
+              <span class="price-pix">
+                <img src="./assets/icons/pix.svg" alt="">R$ 120
+              </span>
+              <span>ou</span>
+              <span>R$ 50 (3x sem juros)</span>
+            </div>
+            <div class="botoes">
+              <button class="details" data-game="game2-ps5"> <img src="./assets/icons/lupa-2.svg" alt="Loupe Icon"> Detalhes</button>
+              <a href="https://loja.infinitepay.io/guilherme-galego/ems5818-naruto-shippuden-ultimate-ninja-storm-2---" target="_blank" class="cp"> <img src="./assets/icons/cart.svg" alt="Shoppe Icon"> Adicionar</a>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div id="modal" class="modal">
+        <span class="fechar">&times;</span>
+        <img class="modal-img" id="modal-img" style="display: block;" />
+
+        <button class="prev">&#10094</button>
+        <button class="next">&#10095</button>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <div class="redes" data-anima="right">
+          <div class="rede-box">
+            <a class="rede" href="https://www.google.com" target="_blank">
+              <img src="./assets/icons/instagram-logo.svg" alt="">
+            </a>
+            <span>Instagram</span>
+          </div>
+          <div class="rede-box">
+            <a class="rede" href="https://www.google.com" target="_blank">
+              <img src="./assets/icons/tiktok-logo.svg" alt="">
+            </a>
+            <span>Tiktok</span>
+          </div>
+          <div class="rede-box">
+            <a class="rede" href="https://www.google.com" target="_blank">
+              <img src="./assets/icons/youtube-logo.svg" alt="">
+            </a>
+            <span>Youtube</span>
+          </div>
+        </div>
+        <p class="copy" data-anima="right">@Todos os direitos reservados</p>
+      </div>
+    </footer>
+  </div>
+
+
+
+  <script type="module" src="./js/script.js"></script>
+
+</body>
+
+</html>
