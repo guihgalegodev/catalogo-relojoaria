@@ -9,7 +9,7 @@
     padding: 15px 0px;
   }
 
-  .intro .sub-title {
+  .intro .title {
     font-size: 2rem;
     margin-bottom: 40px;
   }
@@ -44,7 +44,7 @@
     position: absolute;
     z-index: 9;
     left: 0px;
-    top: 80px;
+    top: 75px;
     width: 100%;
     padding-top: 10px;
     height: 0px;
@@ -102,7 +102,7 @@
     height: 180px;
   }
 
-  .intro .sub-title {
+  .intro .title {
     font-size: 1.5rem;
     margin-bottom: 20px;
     line-height: 25px;
@@ -143,11 +143,6 @@
 
   #box-title h1 {
     font-size: 1.3rem;
-  }
-
-  .market-logo {
-    width: 120px;
-    height: 120px;
   }
 }
 
@@ -230,10 +225,5 @@
 
   .lojas-info {
     margin: 2rem 0px;
-  }
-
-  .market-logo {
-    width: 80px;
-    height: 80px;
   }
 }
