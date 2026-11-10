@@ -1,0 +1,314 @@
+export default class Modal {
+  constructor(btns, modal, modalImg, fechar, btnNext, btnPrev) {
+    this.btnsDetalhes = document.querySelectorAll(btns);
+    this.modal = document.getElementById(modal);
+    this.modalImg = document.getElementById(modalImg);
+    this.fechar = document.querySelector(fechar);
+    this.btnNext = document.querySelector(btnNext);
+    this.btnPrev = document.querySelector(btnPrev);
+
+    this.imagens = [];
+    this.indexAtual = 0;
+    this.escala = 1;
+    this.posX = 0;
+    this.posY = 0;
+    this.isDragging = false;
+    this.startX = 0;
+    this.startY = 0;
+    this.touchStartDistance = 0;
+    this.touchStartScale = 1;
+
+    this.events = ["touchstart", "click"];
+  }
+
+  get isDesktop() {
+    return window.innerWidth > 768;
+  }
+
+  abrirModal(listaImagens) {
+    this.imagens = listaImagens;
+    this.indexAtual = 0;
+
+    this.modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    this.atualizarMidia();
+  }
+
+  atualizarMidia() {
+    const midiaAtual = this.imagens[this.indexAtual];
+    this.modalImg.style.display = "block";
+    this.modalImg.src = midiaAtual;
+  }
+
+  resetarImagem() {
+    this.escala = 1;
+    this.posX = 0;
+    this.posY = 0;
+    this.isDragging = false;
+    this.aplicarTransform();
+    if (this.modalImg) {
+      this.modalImg.style.cursor = "zoom-in";
+    }
+  }
+
+  aplicarTransform() {
+    this.modalImg.style.transform = `translate(${this.posX}px, ${this.posY}px) scale(${this.escala})`;
+  }
+
+  initModalEvents() {
+    if (!this.modal || !this.modalImg) return;
+
+    this.modalImg.addEventListener("wheel", (e) => {
+      this.wheelZoomEvent(e);
+    });
+
+    this.modalImg.addEventListener("mousedown", (e) => {
+      this.mouseDownEvent(e);
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      this.mouseMoveEvent(e);
+    });
+
+    window.addEventListener("mouseup", () => {
+      this.mouseUpEvent();
+    });
+
+    // Eventos de toque para dispositivos móveis (zoom por pinça e arrasto)
+    this.modalImg.addEventListener("touchstart", (e) => {
+      this.touchstartEvent(e);
+    });
+
+    window.addEventListener("touchmove", (e) => {
+      this.touchMoveEvent(e);
+    });
+
+    window.addEventListener("touchend", (e) => {
+      this.touchEndEvent(e);
+    });
+
+    window.addEventListener("touchcancel", () => {
+      this.touchCancelEvent();
+    });
+
+    // <--- fim eventos modal no mobile --->
+
+    this.events.forEach((event) => {
+      this.btnNext.addEventListener(event, (e) => {
+        if (e.type === "touchstart") e.preventDefault();
+        this.indexAtual = (this.indexAtual + 1) % this.imagens.length;
+        this.atualizarMidia();
+        this.resetarImagem();
+      });
+
+      this.btnPrev.addEventListener(event, (e) => {
+        if (e.type === "touchstart") e.preventDefault();
+        this.indexAtual =
+          (this.indexAtual - 1 + this.imagens.length) % this.imagens.length;
+        this.atualizarMidia();
+        this.resetarImagem();
+      });
+
+      this.fechar.addEventListener(event, (e) => {
+        if (e.type === "touchstart") e.preventDefault();
+        this.modal.style.display = "none";
+        document.body.style.overflow = "";
+        this.resetarImagem();
+      });
+    });
+  }
+
+  wheelZoomEvent(e) {
+    if (!this.isDesktop) return;
+
+    e.preventDefault();
+
+    const zoomSpeed = 0.1;
+
+    if (e.deltaY < 0) {
+      this.escala += zoomSpeed;
+    } else {
+      this.escala -= zoomSpeed;
+    }
+
+    this.escala = Math.round(this.escala * 100) / 100;
+
+    if (this.escala <= 1) {
+      this.resetarImagem();
+      return;
+    }
+
+    if (this.escala > 3) this.escala = 3;
+
+    this.modalImg.style.cursor = "grab";
+    this.aplicarTransform();
+  }
+
+  mouseDownEvent(e) {
+    e.preventDefault();
+
+    if (this.escala <= 1) return;
+
+    this.isDragging = true;
+    this.startX = e.clientX - this.posX;
+    this.startY = e.clientY - this.posY;
+
+    this.modalImg.style.cursor = "grabbing";
+  }
+
+  mouseMoveEvent(e) {
+    if (!this.isDragging) return;
+
+    this.posX = e.clientX - this.startX;
+    this.posY = e.clientY - this.startY;
+
+    this.aplicarTransform();
+  }
+
+  mouseUpEvent() {
+    this.isDragging = false;
+    this.modalImg.style.cursor = this.escala > 1 ? "grab" : "zoom-in";
+  }
+
+  // Eventos mobile do modal
+
+  touchstartEvent(e) {
+    if (e.touches.length === 1) {
+      if (this.escala > 1) {
+        this.isDragging = true;
+        this.startX = e.touches[0].clientX - this.posX;
+        this.startY = e.touches[0].clientY - this.posY;
+      }
+    } else if (e.touches.length === 2) {
+      this.isDragging = false;
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      this.touchStartDistance = Math.hypot(dx, dy);
+      this.touchStartScale = this.escala;
+    }
+  }
+
+  touchMoveEvent(e) {
+    if (e.touches.length === 1 && this.isDragging) {
+      this.posX = e.touches[0].clientX - this.startX;
+      this.posY = e.touches[0].clientY - this.startY;
+      this.aplicarTransform();
+    } else if (e.touches.length === 2 && this.touchStartDistance > 0) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const currentDistance = Math.hypot(dx, dy);
+      const factor = currentDistance / this.touchStartDistance;
+      this.escala = this.touchStartScale * factor;
+
+      if (this.escala <= 1) {
+        this.escala = 1;
+        this.posX = 0;
+        this.posY = 0;
+      }
+      if (this.escala > 3) this.escala = 3;
+
+      this.aplicarTransform();
+    }
+  }
+
+  touchEndEvent(e) {
+    if (e.touches.length === 0) {
+      this.isDragging = false;
+      this.touchStartDistance = 0;
+      if (this.escala <= 1) {
+        this.resetarImagem();
+      }
+    } else if (e.touches.length === 1) {
+      if (this.escala > 1) {
+        this.isDragging = true;
+        this.startX = e.touches[0].clientX - this.posX;
+        this.startY = e.touches[0].clientY - this.posY;
+      } else {
+        this.isDragging = false;
+        this.resetarImagem();
+      }
+      this.touchStartDistance = 0;
+    }
+  }
+
+  touchCancelEvent() {
+    this.isDragging = false;
+    this.touchStartDistance = 0;
+    if (this.escala <= 1) {
+      this.resetarImagem();
+    }
+  }
+
+  addEventsBtnDetalhe() {
+    this.btnsDetalhes.forEach((btn) => {
+      this.events.forEach((event) => {
+        btn.addEventListener(event, (e) => {
+          this.salvarBtnDados(e);
+        });
+      });
+    });
+  }
+
+  salvarBtnDados(e) {
+    if (e.type === "touchstart") e.preventDefault();
+    this.btnsDados = [...this.btnsDetalhes].map((btn) => {
+      return {
+        btn,
+        gameKey: btn.dataset.game,
+      };
+    });
+    this.getGame(e);
+  }
+
+  async initFetch(objBtn) {
+    try {
+      objBtn.btn.style.opacity = "0.5";
+      objBtn.btn.style.pointerEvents = "none";
+      const response = await fetch("./games.json");
+      if (!response.ok) {
+        throw new Error("Não foi possível carregar os dados dos jogos.");
+      }
+
+      const games = await response.json();
+
+      const listaImagens = games[objBtn.gameKey];
+
+      if (listaImagens) {
+        this.abrirModal(listaImagens);
+      } else {
+        throw new Error(
+          `Jogo com a chave "${objBtn.gameKey}" não foi encontrado no arquivo de dados.`,
+        );
+      }
+    } catch (error) {
+      console.error("Erro:", error);
+      alert("Ocorreu um erro ao carregar as imagens do jogo.");
+    } finally {
+      objBtn.btn.style.opacity = "1";
+      objBtn.btn.style.pointerEvents = "auto";
+    }
+  }
+
+  getGame(e) {
+    const btnTargetDataGame = e.currentTarget.dataset.game;
+    this.btnsDados.forEach((objBtn) => {
+      if (objBtn.gameKey === btnTargetDataGame) {
+        this.initFetch(objBtn);
+      }
+    });
+  }
+
+  bindEvents() {
+    this.salvarBtnDados = this.salvarBtnDados.bind(this);
+    this.initModalEvents = this.initModalEvents.bind(this);
+  }
+
+  init() {
+    if (this.btnsDetalhes.length) {
+      this.addEventsBtnDetalhe();
+      this.initModalEvents();
+      this.bindEvents();
+    }
+    return this;
+  }
+}

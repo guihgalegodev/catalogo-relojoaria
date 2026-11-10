@@ -1,0 +1,109 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  touch-action: none;
+}
+
+.modal img {
+  max-width: 70%;
+  max-height: 70%;
+  transition: transform 0.2s ease;
+  touch-action: none;
+}
+
+.modal img {
+  cursor: zoom-in;
+}
+
+.fechar {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: red;
+  background: var(--cinza);
+  padding: 0px 10px;
+  border-radius: 50%;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  color: var(--gold);
+  background: none;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.prev {
+  left: 100px;
+}
+.next {
+  right: 100px;
+}
+
+@media (max-width: 1050px) {
+  /* .prev,
+  .next {
+    top: 90%;
+  }
+
+  .prev {
+    left: 250px;
+  }
+  .next {
+    right: 250px;
+  } */
+}
+
+@media (max-width: 790px) {
+  .prev {
+    left: 80px;
+  }
+  .next {
+    right: 80px;
+  }
+}
+
+@media (max-width: 650px) {
+  .prev {
+    left: 40px;
+  }
+  .next {
+    right: 40px;
+  }
+}
+
+@media (max-width: 570px) {
+  .prev,
+  .next {
+    top: 85%;
+  }
+
+  .prev {
+    left: 100px;
+  }
+  .next {
+    right: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+}

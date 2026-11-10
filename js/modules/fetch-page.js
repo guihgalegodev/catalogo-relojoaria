@@ -1,0 +1,147 @@
+import Modal from "./modal.js";
+import ScrollAnimado from "./scroll-animado.js";
+// import CheckWindowMobile from "./check-is-mobile.js";
+// import Banner from "./banner.js";
+import DropdownMenu from "./dropdown-menu.js";
+import { links } from "./links.js";
+import ScrollInfinito from "./scroll-infinito.js";
+
+export default function initfetchPage() {
+  let initialUrl = window.location.href;
+  const events = ["touchstart", "click"];
+
+  if (initialUrl.endsWith("/") && !initialUrl.includes(".html")) {
+    initialUrl += "index.html";
+  }
+
+  const linkDrop = new DropdownMenu("[data-dropdown]");
+  linkDrop.init();
+
+  fetchPage(initialUrl);
+
+  function handleClick(e) {
+    e.preventDefault();
+    fetchPage(e.target.href);
+    window.history.pushState(null, null, e.target.href);
+  }
+
+  let currentScrollAnimado = null;
+  // let currentBanner = null;
+  let currentScrollInfinito = null;
+
+  async function fetchPage(url) {
+    const pageResponse = await fetch(url);
+    const pageText = await pageResponse.text();
+    replaceContent(pageText);
+    linkAtivo(url);
+
+    window.scrollTo({
+      top: 0,
+    });
+
+    // Se já existir uma instância rodando, remove o eventos de scroll antigo
+    if (currentScrollAnimado) {
+      currentScrollAnimado.stop();
+    }
+
+    //Cria a nova instância
+    const footerRedes = document.querySelector(".redes");
+    const footerP = document.querySelector(".copy");
+
+    footerRedes.classList.remove("ativo", "right");
+    footerP.classList.remove("ativo", "right");
+
+    currentScrollAnimado = new ScrollAnimado("[data-anima]");
+    currentScrollAnimado.init();
+
+    const images = document.querySelectorAll(".content-fetch img");
+    let loadedImages = 0;
+
+    // Verifica se as imagens já estão baixadas
+    // para pegar o valor correto de offsett
+    if (images.length > 0) {
+      images.forEach((img) => {
+        if (img.complete) {
+          loadedImages++;
+          if (loadedImages === images.length)
+            currentScrollAnimado.getDistance();
+        } else {
+          // Espera as imagens carregarem
+          img.addEventListener("load", () => {
+            loadedImages++;
+            if (loadedImages === images.length) {
+              currentScrollAnimado.getDistance();
+              currentScrollAnimado.checkDistance();
+            }
+          });
+        }
+      });
+    }
+
+    // if (currentBanner) {
+    //   currentBanner.stopAutoSlide();
+    // }
+
+    // currentBanner = new Banner(".banner", ".controls li", url);
+    // currentBanner.init();
+
+    if (url.endsWith("index.html")) {
+      currentScrollInfinito = new ScrollInfinito(
+        ".scroll",
+        ".scroll-container",
+      );
+      currentScrollInfinito.init();
+    }
+
+    if (!url.endsWith("index.html")) {
+      // const isMobile = 790;
+      // const mobileWindow = new CheckWindowMobile(isMobile, ".jogo-img");
+      // mobileWindow.init();
+
+      const modalProdutcs = new Modal(
+        ".content-fetch .details",
+        "modal",
+        "modal-img",
+        ".fechar",
+        ".next",
+        ".prev",
+      );
+      modalProdutcs.init();
+    }
+  }
+
+  function replaceContent(newText) {
+    const newHtml = document.createElement("div");
+    newHtml.innerHTML = newText;
+
+    const oldContent = document.querySelector(".content-fetch");
+    const newContent = newHtml.querySelector(".content-fetch");
+
+    oldContent.innerHTML = newContent.innerHTML;
+  }
+
+  window.addEventListener("popstate", () => {
+    if (
+      window.location.href.endsWith("/") &&
+      !window.location.href.includes(".html")
+    )
+      window.location.href += "index.html";
+    fetchPage(window.location.href);
+  });
+
+  links.forEach((link) => {
+    events.forEach((event) => {
+      link.addEventListener(event, handleClick);
+    });
+  });
+}
+
+function linkAtivo(urlAtual) {
+  links.forEach((link) => {
+    link.classList.remove("ativo");
+    const href = link.getAttribute("href");
+    if (urlAtual.includes(href)) {
+      link.classList.add("ativo");
+    }
+  });
+}

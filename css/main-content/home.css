@@ -1,0 +1,285 @@
+.intro {
+  opacity: 0;
+  margin-top: 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  align-items: center;
+  transition: 0.7s;
+}
+
+.intro #box-logo {
+  margin-bottom: 60px;
+}
+
+.intro .sub-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+}
+
+.intro img {
+  margin-bottom: -30px;
+}
+
+.intro.ativo.right {
+  animation: showRight 0.7s forwards;
+}
+
+.infos p {
+  opacity: 0;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.3rem;
+  letter-spacing: 1.3;
+  margin: 20px 10px;
+  transition: 0.7s;
+}
+
+.infos p.ativo.right {
+  animation: showRight 0.7s forwards;
+}
+
+.olx {
+  font-weight: bold;
+  color: #7312d7;
+}
+
+.olx-l {
+  color: #90e668;
+}
+
+.olx-x {
+  color: #f28408;
+}
+
+.lojas-info {
+  margin: 3.5rem 0px;
+}
+
+.loja {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 2rem;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.lojas-info p {
+  opacity: 1;
+}
+
+.loja.ativo.down {
+  animation: showDown 0.7s forwards;
+}
+
+.loja.ativo.right {
+  animation: showRight 0.7s forwards;
+}
+
+.logos-market {
+  display: flex;
+  gap: 120px;
+  margin-bottom: 40px;
+}
+
+.logo-olx,
+.logo-sh {
+  background: rgba(15, 15, 15, 0.6);
+  padding: 15px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logos-market .logo-sh {
+  border: 1px solid #ea501f;
+  box-shadow: 3px 3px 10px #ea501f;
+}
+
+.logos-market .logo-olx {
+  border: 1px solid #7312d7;
+  box-shadow: 3px 3px 10px #7312d7;
+}
+
+.sh {
+  color: #ea501f;
+}
+
+.faq {
+  opacity: 0;
+  padding: 40px 0px;
+}
+
+.faq.ativo.right {
+  animation: showRight 0.7s forwards;
+}
+
+details {
+  margin-bottom: 50px;
+  margin-left: 20px;
+  overflow: hidden;
+  font-family: "Playfair Display", serif;
+  font-style: normal;
+}
+
+summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  cursor: pointer;
+  font-size: 1.5rem;
+  gap: 10px;
+}
+
+summary::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 2px;
+  background: var(--gold);
+  transition: rotate 0.3s;
+}
+
+[open] summary::before {
+  rotate: 90deg;
+}
+
+.resp {
+  padding: 20px;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+@supports (height: calc-size(auto, size)) {
+  details::details-content {
+    height: 0;
+    transition:
+      height 0.3s,
+      content-visibility 0.3s allow-discrete;
+  }
+
+  details[open]::details-content {
+    height: calc-size(auto, size);
+  }
+}
+
+/* BANNER */
+
+.banner-wrapper {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-content: center;
+  justify-items: center;
+  gap: 10px;
+  margin: 120px 0px;
+  opacity: 0;
+}
+
+.banner-wrapper.ativo.down {
+  animation: showDown 0.7s forwards;
+}
+
+.banner {
+  height: 615px;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.banner img {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+.controls {
+  padding: 10px;
+  display: flex;
+  gap: 20px;
+}
+
+.controls li {
+  width: 13px;
+  height: 13px;
+  padding: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.controls li.active {
+  background: var(--gold);
+}
+
+@media (max-width: 1250px) {
+  .banner {
+    height: 370px;
+  }
+
+  .controls li {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 700px) {
+  .banner {
+    max-width: 600px;
+    height: 300px;
+  }
+
+  .controls li {
+    width: 5px;
+    height: 5px;
+    padding: 5px;
+  }
+
+  .resp {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .banner-wrapper {
+    margin: 60px 0px;
+  }
+
+  .banner {
+    max-width: 450px;
+    height: 200px;
+  }
+
+  .logos-market {
+    gap: 30px;
+  }
+
+  .logo-olx,
+  .logo-sh {
+    padding: 10px;
+  }
+
+  summary {
+    font-size: 1.25rem;
+  }
+
+  .resp {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .logos-market {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,239 @@
+@media (max-width: 1050px) {
+  .jogos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 790px) {
+  .header {
+    padding: 15px 0px;
+  }
+
+  .intro .sub-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .jogos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 0px;
+  }
+
+  .overlay {
+    opacity: 0;
+    transition: 0.5s ease;
+  }
+
+  .jogo-img.ativo .overlay {
+    opacity: 1;
+  }
+
+  .intro img {
+    width: 250px;
+    height: 250px;
+  }
+
+  #btn-mobile {
+    display: flex;
+    padding: 20px;
+  }
+
+  #menu {
+    display: block;
+    background: var(--preto);
+    position: absolute;
+    z-index: 9;
+    left: 0px;
+    top: 80px;
+    width: 100%;
+    padding-top: 10px;
+    height: 0px;
+    visibility: hidden;
+    overflow-y: hidden;
+    transition: 0.4s;
+  }
+
+  #menu li {
+    margin-left: -20px;
+  }
+
+  #nav-menu.active #menu {
+    height: calc(100vh - 130px);
+    visibility: visible;
+    overflow-y: auto;
+  }
+
+  #menu a {
+    font-size: 1rem;
+    margin-left: 30px;
+    margin-bottom: 30px;
+  }
+
+  .details {
+    border: none;
+  }
+
+  .cp {
+    border: none;
+  }
+
+  .market-logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .logos-market p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .header {
+    padding: 10px 0px;
+  }
+
+  .logo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .intro img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .intro .sub-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    line-height: 25px;
+  }
+
+  .infos p[data-anima] {
+    font-size: 1rem;
+    line-height: 1.3rem;
+  }
+
+  #menu li {
+    margin-left: -10px;
+  }
+
+  .container {
+    margin: 0px 10px;
+  }
+
+  .jogos {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 550px) {
+  .jogos {
+    gap: 30px 0px;
+  }
+
+  .jogo {
+    width: 200px;
+  }
+
+  .jogo-img img {
+    display: block;
+    width: 100%;
+    max-height: 250px;
+  }
+
+  #box-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .market-logo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 430px) {
+  #hub-text-home {
+    margin-left: 8px;
+  }
+
+  #foto-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  #menu {
+    top: 75px;
+  }
+
+  #box-title {
+    border: none;
+  }
+
+  #box-title h1 {
+    font-size: 0.955rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .intro {
+    margin-top: 100px;
+  }
+
+  .intro #box-title {
+    margin-bottom: 30px;
+  }
+
+  #menu a {
+    font-size: 0.95rem;
+  }
+
+  .logo span {
+    font-size: 0.75rem;
+  }
+
+  .overlay .estados {
+    font-size: 1rem;
+  }
+
+  .cib-loose {
+    font-size: 0.75rem;
+  }
+
+  .jogo-img img {
+    max-height: 180px;
+  }
+
+  .jogo {
+    width: 90%;
+    padding: 0px;
+  }
+
+  .botoes {
+    margin-top: 10px;
+  }
+
+  .cp {
+    margin-bottom: 10px;
+  }
+
+  .cp img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .details img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .lojas-info {
+    margin: 2rem 0px;
+  }
+
+  .market-logo {
+    width: 80px;
+    height: 80px;
+  }
+}
