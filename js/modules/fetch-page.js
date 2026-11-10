@@ -1,7 +1,7 @@
 import Modal from "./modal.js";
 import ScrollAnimado from "./scroll-animado.js";
-// import CheckWindowMobile from "./check-is-mobile.js";
-// import Banner from "./banner.js";
+import CheckWindowMobile from "./check-is-mobile.js";
+import Banner from "./banner.js";
 import DropdownMenu from "./dropdown-menu.js";
 import { links } from "./links.js";
 import ScrollInfinito from "./scroll-infinito.js";
@@ -26,7 +26,7 @@ export default function initfetchPage() {
   }
 
   let currentScrollAnimado = null;
-  // let currentBanner = null;
+  let currentBanner = null;
   let currentScrollInfinito = null;
 
   async function fetchPage(url) {
@@ -78,12 +78,12 @@ export default function initfetchPage() {
       });
     }
 
-    // if (currentBanner) {
-    //   currentBanner.stopAutoSlide();
-    // }
+    if (currentBanner) {
+      currentBanner.stopAutoSlide();
+    }
 
-    // currentBanner = new Banner(".banner", ".controls li", url);
-    // currentBanner.init();
+    currentBanner = new Banner(".banner", ".controls li", url);
+    currentBanner.init();
 
     if (url.endsWith("index.html")) {
       currentScrollInfinito = new ScrollInfinito(
@@ -94,9 +94,9 @@ export default function initfetchPage() {
     }
 
     if (!url.endsWith("index.html")) {
-      // const isMobile = 790;
-      // const mobileWindow = new CheckWindowMobile(isMobile, ".jogo-img");
-      // mobileWindow.init();
+      const isMobile = 790;
+      const mobileWindow = new CheckWindowMobile(isMobile, ".jogo-img");
+      mobileWindow.init();
 
       const modalProdutcs = new Modal(
         ".content-fetch .details",
