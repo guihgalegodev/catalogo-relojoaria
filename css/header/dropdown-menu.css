@@ -3,6 +3,7 @@
 }
 
 .dropdown-menu {
+  background: var(--preto);
   position: absolute;
   top: 48px;
   left: 0px;
