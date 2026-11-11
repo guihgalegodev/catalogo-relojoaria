@@ -306,3 +306,24 @@
     font-size: 0.77rem;
   }
 }
+
+@media (max-width: 450px) {
+  .product {
+    width: 170px;
+  }
+}
+
+@media (max-width: 373px) {
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .product {
+    width: 80%;
+  }
+
+  .prices {
+    padding: 20px 5px 0px 5px;
+    font-size: 1rem;
+  }
+}

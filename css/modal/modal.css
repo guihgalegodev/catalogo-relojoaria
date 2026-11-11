@@ -92,4 +92,11 @@
     max-width: 90%;
     max-height: 90%;
   }
+
+  .prev {
+    left: 75px;
+  }
+  .next {
+    right: 75px;
+  }
 }

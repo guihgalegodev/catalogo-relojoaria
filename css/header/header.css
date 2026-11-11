@@ -114,7 +114,7 @@
 
   #menu {
     display: block;
-    background: var(--preto);
+    background: #000000;
     position: absolute;
     z-index: 9;
     left: 0px;
@@ -132,7 +132,7 @@
   }
 
   #nav-menu.active #menu {
-    height: calc(100vh - 130px);
+    height: calc(100vh - 100px);
     visibility: visible;
     overflow-y: auto;
   }

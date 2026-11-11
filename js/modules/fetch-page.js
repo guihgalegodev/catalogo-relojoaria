@@ -95,7 +95,7 @@ export default function initfetchPage() {
 
     if (!url.endsWith("index.html")) {
       const isMobile = 790;
-      const mobileWindow = new CheckWindowMobile(isMobile, ".jogo-img");
+      const mobileWindow = new CheckWindowMobile(isMobile, ".product-img");
       mobileWindow.init();
 
       const modalProdutcs = new Modal(
