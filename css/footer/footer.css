@@ -1,7 +1,7 @@
 footer {
   width: 100%;
   text-align: center;
-  background: var(--preto);
+  background: #000;
   margin-top: 60px;
   font-family: "Playfair Display", serif;
 }

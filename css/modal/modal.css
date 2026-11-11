@@ -55,20 +55,6 @@
   right: 100px;
 }
 
-@media (max-width: 1050px) {
-  /* .prev,
-  .next {
-    top: 90%;
-  }
-
-  .prev {
-    left: 250px;
-  }
-  .next {
-    right: 250px;
-  } */
-}
-
 @media (max-width: 790px) {
   .prev {
     left: 80px;
