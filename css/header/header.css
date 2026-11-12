@@ -1,6 +1,6 @@
 .header-bg {
   padding: 0px 10px;
-  background: #000;
+  background: var(--primary-color);
   position: fixed;
   top: 0;
   width: 100%;
@@ -114,7 +114,7 @@
 
   #menu {
     display: block;
-    background: #000000;
+    background: var(--secundary-color);
     position: absolute;
     z-index: 9;
     left: 0px;
@@ -132,7 +132,7 @@
   }
 
   #nav-menu.active #menu {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 130px);
     visibility: visible;
     overflow-y: auto;
   }

@@ -1,4 +1,7 @@
 :root {
+  --primary-color: #022d2f;
+  --secundary-color: #021f20;
+  --product-color: rgba(2, 45, 47, 0.3);
   --cinza: #dadada;
   --branco: #e2e2e2;
   --preto: #141414;
@@ -13,7 +16,7 @@
 }
 
 body {
-  background: #000;
+  background: var(--secundary-color);
   color: var(--branco);
 }
 
@@ -24,6 +27,12 @@ img {
 
 ul {
   list-style: none;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: var(--gold);
 }
 
 a {

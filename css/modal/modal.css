@@ -55,12 +55,17 @@
   right: 100px;
 }
 
-@media (max-width: 790px) {
+@media (max-width: 930px) {
+  .prev,
+  .next {
+    top: 85%;
+  }
+
   .prev {
-    left: 80px;
+    left: 180px;
   }
   .next {
-    right: 80px;
+    right: 180px;
   }
 }
 
@@ -87,7 +92,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .modal img {
     max-width: 100%;
     max-height: 100%;

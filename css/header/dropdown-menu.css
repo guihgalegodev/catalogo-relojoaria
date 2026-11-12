@@ -3,7 +3,7 @@
 }
 
 .dropdown-menu {
-  background: var(--preto);
+  background: var(--primary-color);
   position: absolute;
   top: 48px;
   left: 0px;
@@ -50,7 +50,7 @@
   height: 0px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid #141414;
+  border-bottom: 10px solid var(--primary-color);
 }
 
 @media (max-width: 790px) {
@@ -66,7 +66,7 @@
 
   .dropdown-menu {
     position: static;
-    background: #000000;
+    background: var(--secundary-color);
     width: max-content;
     margin-left: 30px;
     margin-top: -20px;
