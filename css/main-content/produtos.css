@@ -87,8 +87,8 @@
 }
 
 .overlay img {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
 
 .overlay span {
@@ -101,10 +101,14 @@
   color: #018d3e;
 }
 
-@media (min-width: 791px) and (hover: hover) {
+/* @media (min-width: 791px) and (hover: hover) {
   .product-img:hover .overlay {
     opacity: 1;
   }
+} */
+
+.product-img.ativo .overlay {
+  opacity: 1;
 }
 
 .prices {
@@ -324,6 +328,10 @@
 
   .product {
     width: 80%;
+  }
+
+  .product-name {
+    font-size: 1.25rem;
   }
 
   .prices {

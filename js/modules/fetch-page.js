@@ -1,6 +1,6 @@
 import Modal from "./modal.js";
 import ScrollAnimado from "./scroll-animado.js";
-import CheckWindowMobile from "./check-is-mobile.js";
+import ActiveOverlayCards from "./active-overlay-cards.js";
 import Banner from "./banner.js";
 import DropdownMenu from "./dropdown-menu.js";
 import { links } from "./links.js";
@@ -94,9 +94,8 @@ export default function initfetchPage() {
     }
 
     if (!url.endsWith("index.html")) {
-      const isMobile = 790;
-      const mobileWindow = new CheckWindowMobile(isMobile, ".product-img");
-      mobileWindow.init();
+      const overlayCard = new ActiveOverlayCards(".product-img");
+      overlayCard.init();
 
       const modalProdutcs = new Modal(
         ".content-fetch .details",
